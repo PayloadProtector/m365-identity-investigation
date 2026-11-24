@@ -28,6 +28,28 @@ Times below are as displayed in Splunk. The timezone was not independently verif
 
 The mailbox audit records establish that the rule was created and the reply was accessed. The summarized evidence does not establish that the rule moved the reply or that the VPN request resulted in access.
 
+## Splunk evidence screenshots
+
+These excerpts show the fields used to verify the timeline. Account and message identifiers are masked.
+
+### Failed sign-ins followed by success
+
+The last row shows an `OfficeHome` sign-in at 18:16:53 with error code `0`, following several nonzero results.
+
+![Splunk sign-in timeline showing failed attempts followed by a success](evidence/sign-in-timeline.png)
+
+### Changes to the compromised identity
+
+The audit timeline shows security info registration followed by a successful self-service password reset.
+
+![Entra audit events showing security info registration and self-service password reset](evidence/identity-audit.png)
+
+### Reply found in Deleted Items
+
+The expanded mailbox access event places the VPN email reply under `\Deleted Items`.
+
+![Exchange mailbox audit event showing the reply subject and Deleted Items path](evidence/exchange-reply.png)
+
 ## Reproduce the investigation
 
 Use [the Splunk queries](splunk-queries.md) with the room's lab data or a dataset with equivalent fields. Replace the example account and IP with values observed in your own search. The source is the [TryHackMe M365 Monitoring Basics room](https://tryhackme.com/room/m365monitoringbasics).
